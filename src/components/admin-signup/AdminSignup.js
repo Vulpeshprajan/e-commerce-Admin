@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { CustomInput } from "../custom-input/CustomInput";
+import { toast } from "react-toastify";
+import { createNewAdminAction } from "../../pages/adminAction";
 
 export const AdminSignup = () => {
   const [form, setForm] = useState({});
@@ -17,7 +19,11 @@ export const AdminSignup = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
-    console.log(form);
+    const { confirmPassword, ...rest} = form
+    if(confirmPassword !== rest.password) {
+      return toast.error("Password should match ")
+    }
+    createNewAdminAction(rest)
   };
 
   const inputs = [
@@ -60,6 +66,7 @@ export const AdminSignup = () => {
       required: true,
       type: "password",
       placeholder: "Password",
+      minLength : "6"
     },
 
     {
