@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const rootApi = process.env.REACT_APP_ROOTAPI
-const adminAPI = rootApi + "/admin"
+const rootAPI = process.env.REACT_APP_ROOTAPI;
+const adminAPI = rootAPI + "admin"
 
 const axiosProcessor = async({method, url, obj}) => {
 try {
@@ -28,7 +28,7 @@ try {
 export const postNewAdmin = (data) => {
  
 const obj = {
-        methods: "post",
+        method: "post",
         url: adminAPI,
         obj: data
 
